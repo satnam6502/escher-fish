@@ -10,7 +10,7 @@ The coordinates are those transcribed by Einar Høst in `einarwh/escher-workshop
 
 namespace Picture
 
-private abbrev Point := Float × Float
+private abbrev Point := Rat × Rat
 
 private def bezier : Point × Point × Point × Point → Bezier
   | ((x₀, y₀), (x₁, y₁), (x₂, y₂), (x₃, y₃)) => ⟨⟨x₀, y₀⟩, ⟨x₁, y₁⟩, ⟨x₂, y₂⟩, ⟨x₃, y₃⟩⟩

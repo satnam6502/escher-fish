@@ -11,11 +11,11 @@ so the y coordinate is flipped on output.
 namespace Picture
 
 /-- `x` to two decimal places, without trailing zeros. -/
-private def num (x : Float) : String :=
-  let hundredths := (x.abs * 100).round.toUInt64.toNat
-  let sign := if x < 0 && hundredths > 0 then "-" else ""
-  let fraction := (s!"{hundredths / 10 % 10}{hundredths % 10}".dropEndWhile '0').copy
-  sign ++ toString (hundredths / 100) ++ (if fraction.isEmpty then "" else "." ++ fraction)
+private def num (x : Rat) : String :=
+  let n := ((if x < 0 then -x else x) * 100 + 1 / 2).floor.natAbs
+  let sign := if x < 0 ∧ n > 0 then "-" else ""
+  let fraction := (s!"{n / 10 % 10}{n % 10}".dropEndWhile '0').copy
+  sign ++ toString (n / 100) ++ (if fraction.isEmpty then "" else "." ++ fraction)
 
 #guard num 0 == "0"
 #guard num 100 == "100"
@@ -25,8 +25,10 @@ private def num (x : Float) : String :=
 #guard num 0.05 == "0.05"
 #guard num (-7.5) == "-7.5"
 #guard num (-0.001) == "0"
+#guard num 0.005 == "0.01"
+#guard num (-0.005) == "-0.01"
 
-def toSvg (size : Float) (p : Picture) : String :=
+def toSvg (size : Rat) (p : Picture) : String :=
   let margin := size / 20
   let extent := size + 2 * margin
   let pt (v : Vec) := s!"{num v.x} {num (extent - v.y)}"
