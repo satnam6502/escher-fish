@@ -1,0 +1,10 @@
+name = "escher"
+version = "0.1.0"
+defaultTargets = ["escher"]
+
+[[lean_lib]]
+name = "Escher"
+
+[[lean_exe]]
+name = "escher"
+root = "Main"
