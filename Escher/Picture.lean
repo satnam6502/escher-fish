@@ -9,6 +9,7 @@ and `b` and `c` are its bottom and left-hand edges.
 structure Vec where
   x : Float
   y : Float
+  deriving BEq
 
 instance : Add Vec := ⟨fun u v => ⟨u.x + v.x, u.y + v.y⟩⟩
 instance : Sub Vec := ⟨fun u v => ⟨u.x - v.x, u.y - v.y⟩⟩
@@ -19,6 +20,7 @@ instance : HDiv Vec Nat Vec := ⟨fun v n => ⟨v.x / n.toFloat, v.y / n.toFloat
 /-- A cubic Bézier curve, the only graphical object we need. -/
 structure Bezier where
   (p₀ p₁ p₂ p₃ : Vec)
+  deriving BEq
 
 def Bezier.map (f : Vec → Vec) (z : Bezier) : Bezier :=
   ⟨f z.p₀, f z.p₁, f z.p₂, f z.p₃⟩

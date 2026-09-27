@@ -20,6 +20,7 @@ lake build
 | §5, a picture as a function of vectors `a`, `b`, `c`; `blank`, `over`, `beside`, `above`, `rot`, `flip`, `rot45` | [`Escher/Picture.lean`](Escher/Picture.lean) |
 | Figure 4, the basic fish | [`Escher/Fish.lean`](Escher/Fish.lean) |
 | §3, `fish2`, `fish3`, `t`, `u`, `quartet`, `side`, `corner`, `nonet`, `squarelimit` | [`Escher/SquareLimit.lean`](Escher/SquareLimit.lean) |
+| §6, laws such as `rot(beside(p,q)) = above(rot(q),rot(p))`, checked by `lake build` | [`Escher/Laws.lean`](Escher/Laws.lean) |
 | Rendering the curves | [`Escher/Svg.lean`](Escher/Svg.lean) |
 
 The paper's `side[n]` and `corner[n]` become functions of the depth `n`, and
