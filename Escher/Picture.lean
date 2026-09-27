@@ -6,21 +6,20 @@ three vectors. `a` locates the bottom left-hand corner of the picture's locating
 and `b` and `c` are its bottom and left-hand edges.
 -/
 
-structure Vec where
-  x : Float
-  y : Float
-  deriving BEq
+/-- Coordinates are exact rationals, so the laws in `Escher.Laws` can be proved. -/
+@[ext] structure Vec where
+  x : Rat
+  y : Rat
 
 instance : Add Vec := ⟨fun u v => ⟨u.x + v.x, u.y + v.y⟩⟩
 instance : Sub Vec := ⟨fun u v => ⟨u.x - v.x, u.y - v.y⟩⟩
 instance : Neg Vec := ⟨fun v => ⟨-v.x, -v.y⟩⟩
-instance : HMul Float Vec Vec := ⟨fun k v => ⟨k * v.x, k * v.y⟩⟩
-instance : HDiv Vec Nat Vec := ⟨fun v n => ⟨v.x / n.toFloat, v.y / n.toFloat⟩⟩
+instance : HMul Rat Vec Vec := ⟨fun k v => ⟨k * v.x, k * v.y⟩⟩
+instance : HDiv Vec Nat Vec := ⟨fun v n => ⟨v.x / n, v.y / n⟩⟩
 
 /-- A cubic Bézier curve, the only graphical object we need. -/
 structure Bezier where
   (p₀ p₁ p₂ p₃ : Vec)
-  deriving BEq
 
 def Bezier.map (f : Vec → Vec) (z : Bezier) : Bezier :=
   ⟨f z.p₀, f z.p₁, f z.p₂, f z.p₃⟩
@@ -58,13 +57,13 @@ def rot45 (p : Picture) : Picture :=
 /-- `beside(m, n, p, q)`: `p` and `q` side by side in the ratio `m : n`. -/
 def beside' (m n : Nat) (p q : Picture) : Picture :=
   fun a b c =>
-    let k := m.toFloat / (m + n).toFloat
+    let k : Rat := m / (m + n)
     p a (k * b) c ++ q (a + k * b) ((1 - k) * b) c
 
 /-- `above(m, n, p, q)`: `p` above `q` in the ratio `m : n`. -/
 def above' (m n : Nat) (p q : Picture) : Picture :=
   fun a b c =>
-    let k := m.toFloat / (m + n).toFloat
+    let k : Rat := m / (m + n)
     p (a + (1 - k) * c) b (k * c) ++ q a b ((1 - k) * c)
 
 end Picture

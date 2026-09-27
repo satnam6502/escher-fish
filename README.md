@@ -20,7 +20,7 @@ lake build
 | §5, a picture as a function of vectors `a`, `b`, `c`; `blank`, `over`, `beside`, `above`, `rot`, `flip`, `rot45` | [`Escher/Picture.lean`](Escher/Picture.lean) |
 | Figure 4, the basic fish | [`Escher/Fish.lean`](Escher/Fish.lean) |
 | §3, `fish2`, `fish3`, `t`, `u`, `quartet`, `side`, `corner`, `nonet`, `squarelimit` | [`Escher/SquareLimit.lean`](Escher/SquareLimit.lean) |
-| §6, laws such as `rot(beside(p,q)) = above(rot(q),rot(p))`, checked by `lake build` | [`Escher/Laws.lean`](Escher/Laws.lean) |
+| §6, laws such as `rot(beside(p,q)) = above(rot(q),rot(p))`, proved for all pictures | [`Escher/Laws.lean`](Escher/Laws.lean) |
 | Rendering the curves | [`Escher/Svg.lean`](Escher/Svg.lean) |
 
 The paper's `side[n]` and `corner[n]` become functions of the depth `n`, and
@@ -32,6 +32,15 @@ def squarelimit (n : Nat) :=
   nonet (corner n) (side n) (rot (rot (rot (corner n))))
         (rot (side n)) u (rot (rot (rot (side n))))
         (rot (corner n)) (rot (rot (side n))) (rot (rot (corner n)))
+```
+
+Coordinates are exact rationals (`Rat`) rather than `Float`, so the laws can be
+proved: floating-point addition is not even associative. Some laws hold only up to
+the order in which curves are drawn; these are stated with `≈`, meaning the two
+pictures draw the same curves in every locating box. For example:
+
+```lean
+theorem rot_beside : rot (beside p q) ≈ above (rot q) (rot p)
 ```
 
 ## Credits
