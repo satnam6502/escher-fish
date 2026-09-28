@@ -80,8 +80,13 @@ theorem rot_beside : rot (beside p q) ≈ above (rot q) (rot p)
 
 ## More about Ruby and Lava
 
+There are many great papers about Ruby and Lava, here is a small selection:
+
 * [Ruby page at the University of Oxford](https://www.cs.ox.ac.uk/people/geraint.jones/ruby/)
-* [Lava: hardware design in Haskell](https://dl.acm.org/doi/10.1145/289423.289440)
+* [Lava: hardware design in Haskell](https://dl.acm.org/doi/10.1145/289423.289440). Per Bjesse, Koen Claessen, Mary Sheeran and Satnam Singh. ICFP '98: Proceedings of the third ACM SIGPLAN international conference on Functional programming.
+* [The Design and Verification of a Sorter Core](https://link.springer.com/chapter/10.1007/3-540-44798-9_28). Koen Claessen, Mary Sheeran and Satnam Singh. Correct Hardware Design and Verification Methods. CHARME 2001.
+* [Extensible Embedded Hardware Description Languages with Compilation, Simulation and Verification](https://dl.acm.org/doi/10.1145/3597031.3597051). Omar Tahir, Wayne Luk and Nicolas Wu. HEART '23: Proceedings of the 13th International Symposium on Highly Efficient Accelerators and Reconfigurable Technologies.
+
 
 ## Credits
 
