@@ -109,3 +109,57 @@ fish, from [einarwh/escher-workshop](https://github.com/einarwh/escher-workshop)
 (MIT licence).
 
 The original version of Peter Henderson's 1982 paper used four tiles and avoided the 45 degree rotation, as shown on the page [Programming with Escher](https://mapio.github.io/programming-with-escher/). This version is based on a complete fish tile.
+
+### Why `Rat` and not `Float`
+
+The point of an algebra of pictures is that its laws can be used to reason about
+pictures, which means they should be proved, not just tested. Every law in
+[`Escher/Laws.lean`](Escher/Laws.lean) reduces to equations between coordinates, and
+those equations rely on ordinary arithmetic facts such as associativity,
+commutativity and distributivity. `Float` loses associativity and distributivity to
+rounding: `(a + b) + c` and
+`a + (b + c)` can round to different values, so a law like
+`rot (above p q) = beside (rot p) (rot q)` is simply false over `Float`. `Rat` is a
+genuine field, so once the combinators are unfolded, `grind` can close each goal. The
+exact rationals are converted to decimals only at the last moment, when the SVG is
+written.
+
+### Why `≈`
+
+A picture is a function from a locating box `(a, b, c)` to a list of Bézier curves.
+Combinators such as `over` and `beside` concatenate the lists of their arguments, so
+two pictures can look identical but draw their curves in a different order. For
+example, `rot (beside p q)` draws `p`'s curves before `q`'s, whereas
+`above (rot q) (rot p)` draws `q`'s first. Insisting on `=` would make such laws
+false for reasons that have nothing to do with geometry. So `p ≈ q` is defined as
+
+```lean
+instance : HasEquiv Picture := ⟨fun p q => ∀ a b c, (p a b c).Perm (q a b c)⟩
+```
+
+meaning that in every locating box, the two pictures draw the same curves, each the
+same number of times, possibly in a different order. Laws that hold exactly, such as
+`rot_rot_rot_rot`, are still stated with `=`.
+
+### Why the 45 degree rotation still works over the rationals
+
+The rationals are not closed under rotation by 45 degrees: rotating `(1, 0)` gives
+`(√2/2, √2/2)`. The trick, which comes straight from Henderson's paper, is that a
+picture is never rotated by applying a rotation matrix to its points. Instead,
+`rot45` builds a new locating box from the old one:
+
+```lean
+def rot45 (p : Picture) : Picture :=
+  fun a b c => p (a + (b + c) / 2) ((b + c) / 2) ((c - b) / 2)
+```
+
+The new edges `(b + c) / 2` and `(c - b) / 2` are the old edges rotated by 45 degrees
+*and* shrunk by a factor of `1/√2`. Combining the two, the `√2` from the rotation
+cancels the `√2` from the shrinking, which leaves the matrix
+`½ [[1, -1], [1, 1]]` with rational entries. The shrinking is exactly what the
+Square Limit needs, because the rotated fish must fit inside the triangle formed by
+half of the square. Every combinator only adds, subtracts and scales vectors by
+rational amounts, and the fish's control points and the initial box are rational, so
+every coordinate stays rational. Applying `rot45` twice gives a quarter turn at half
+the size, shifted into the box above. That too holds exactly, as
+`above_blank_rot45_rot45` shows.
