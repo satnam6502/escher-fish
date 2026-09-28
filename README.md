@@ -50,12 +50,7 @@ lake build
 
 ## Pictures in the Lean infoview
 
-```sh
-lake build Examples
-```
-
-Open [`Examples/Widget.lean`](Examples/Widget.lean) in VS Code and place the
-cursor on a `#html` command. Edit the Lean expression to update its picture.
+Import `Escher.Widget` and place the cursor on a `#html` command to preview a picture:
 
 ```lean
 import Escher.Fish
@@ -67,16 +62,8 @@ open Picture
 #html beside fish (rot fish)
 ```
 
-[`Escher/Widget.lean`](Escher/Widget.lean) provides the `HtmlEval Picture` instance
-and `Escher.Widget.pictureHtml : Picture → ProofWidgets.Html` for embedding a
-preview in a larger HTML layout. It uses ProofWidgets' HTML notation and the SVG
-helpers in `Escher/Svg.lean`. The viewport includes curves outside the locating box.
-There is no custom JavaScript or RPC method, and widget imports stay out of the
-core `Escher.lean`.
-
-ProofWidgets is pinned to `v0.0.111`'s commit and built with this project's Lean
-4.34.1. Its JavaScript assets are included upstream; no npm build is needed.
-Keep recursive depths small: Lean evaluates the picture when the command elaborates.
+See [`Examples/Widget.lean`](Examples/Widget.lean) for more examples
+(`lake build Examples`).
 
 ## Reading the code alongside the paper
 
