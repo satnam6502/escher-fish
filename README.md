@@ -112,6 +112,8 @@ The original version of Peter Henderson's 1982 paper used four tiles and avoided
 
 ### Why `Rat` and not `Float`
 
+Thanks to [Jeremy Gibbons](https://www.cs.ox.ac.uk/people/jeremy.gibbons/) for asking some clarifying questions about the use of `Rat` and 45 degree rotation. Here is some explanation.
+
 The point of an algebra of pictures is that its laws can be used to reason about
 pictures, which means they should be proved, not just tested. Every law in
 [`Escher/Laws.lean`](Escher/Laws.lean) reduces to equations between coordinates, and
