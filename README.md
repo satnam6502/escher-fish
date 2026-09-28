@@ -102,8 +102,10 @@ There are many great papers about Ruby and Lava, here is a small selection:
 * [Extensible Embedded Hardware Description Languages with Compilation, Simulation and Verification](https://dl.acm.org/doi/10.1145/3597031.3597051). Omar Tahir, Wayne Luk and Nicolas Wu. HEART '23: Proceedings of the 13th International Symposium on Highly Efficient Accelerators and Reconfigurable Technologies.
 
 
-## Credits
+## Credits and Notes
 
 The fish's Bézier control points are Einar Høst's transcription of Henderson's
 fish, from [einarwh/escher-workshop](https://github.com/einarwh/escher-workshop)
 (MIT licence).
+
+The original version of Peter Henderson's 1982 paper used four tiles and avoided the 45 degree rotation, as shown on the page [Programming with Escher](https://mapio.github.io/programming-with-escher/). This version is based on a complete fish tile.
