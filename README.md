@@ -19,9 +19,9 @@ lake build
 
 | Paper | Lean |
 | --- | --- |
-| §5, a picture as a function of vectors `a`, `b`, `c`; `blank`, `over`, `beside`, `above`, `rot`, `flip`, `rot45` | [`Escher/Picture.lean`](Escher/Picture.lean) |
+| §5, a picture as a function of vectors `a`, `b`, `c`; `blank`, `over`, `beside`, `above`, `rot`, `flip`, `rot45`; the utility functions `quartet` and `nonet` | [`Escher/Picture.lean`](Escher/Picture.lean) |
 | Figure 4, the basic fish | [`Escher/Fish.lean`](Escher/Fish.lean) |
-| §3, `fish2`, `fish3`, `t`, `u`, `quartet`, `side`, `corner`, `nonet`, `squarelimit` | [`Escher/SquareLimit.lean`](Escher/SquareLimit.lean) |
+| §3, `fish2`, `fish3`, `t`, `u`, `side`, `corner`, `squarelimit` | [`Escher/SquareLimit.lean`](Escher/SquareLimit.lean) |
 | §6, laws such as `rot(beside(p,q)) = above(rot(q),rot(p))`, proved for all pictures | [`Escher/Laws.lean`](Escher/Laws.lean) |
 | Rendering the curves | [`Escher/Svg.lean`](Escher/Svg.lean) |
 
