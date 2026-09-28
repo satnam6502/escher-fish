@@ -7,7 +7,7 @@ Henderson's 1982 paper [*Functional Geometry*](https://eprints.soton.ac.uk/id/ep
 
 ![Square Limit to depth 2](squarelimit.svg)
 
-And this its beautiful description in Lean 4:
+And this is its beautiful description in Lean 4:
 
 ```lean
 def squarelimit (n : Nat) :=
@@ -16,15 +16,15 @@ def squarelimit (n : Nat) :=
         (rot (corner n)) (rot (rot (side n))) (rot (rot (corner n)))
 ```
 
-# Functional Geometry for Circuit Layout
+## Functional Geometry for Circuit Layout
 
-Ruby, a relational hardware description language which provides combinators that simultaneously combine behavioural semantics and layout semantics allows for the expression of sophisticated circuit layouts using just composable combinators without mentioning a single Cartesian co-ordinate. The page [A Sorter Example in Lava](https://raintown.org/lava/sorter/) gives an example of how a high speed sorter can be efficiently laid out on a Xilinx FPGA using a DSL that has layout combinators that also compose behaviour ([Lava](https://raintown.org/lava/)).
+Ruby, a relational hardware description language which provides combinators that simultaneously combine behavioural semantics and layout semantics, allows for the expression of sophisticated circuit layouts using just composable combinators without mentioning a single Cartesian co-ordinate. The page [A Sorter Example in Lava](https://raintown.org/lava/sorter/) gives an example of how a high speed sorter can be efficiently laid out on a Xilinx FPGA using a DSL that has layout combinators that also compose behaviour ([Lava](https://raintown.org/lava/)).
 
-Here is what the layout of a Batcher's bitonic sorter on an FPGA produced from a DSL with layout combinators:
+Here is what the layout of a Batcher's bitonic sorter on an FPGA produced from a DSL with layout combinators looks like:
 
 ![Butterfly sorter](butterfly-bsort.png)
 
-Notice how the FFT-style butterfly wiring pattern is clearly evident. The ability to express spatial layout in a textual algebraic manner is not also great for humans, but it is also fantastic for AIs (LLMs) which can use layout combinators and their laws to help optimize circuit layouts to minimize area, delay power etc/
+Notice how the FFT-style butterfly wiring pattern is clearly evident. The ability to express spatial layout in a textual algebraic manner is not only great for humans, but it is also fantastic for AIs (LLMs), which can use layout combinators and their laws to help optimize circuit layouts to minimize area, delay, power, etc.
 
 ## Running
 
