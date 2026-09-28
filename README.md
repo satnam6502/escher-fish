@@ -1,4 +1,4 @@
-# escher-fish
+# Fish and Chips
 
 I love [Escher's fish](https://en.wikipedia.org/wiki/Sky_and_Water_I), and I especially love [Peter Henderson](https://www.linkedin.com/in/peter-henderson-98a48742/)'s rendering of Escher's fish, which has inspired much of the work I have done on algebraic specification of circuit layout, building on the original work on [Ruby](https://www.cs.ox.ac.uk/people/geraint.jones/ruby/) for circuit design and layout by [Mary Sheeran](https://www.cse.chalmers.se/~ms/) and [Geraint Jones](https://www.cs.ox.ac.uk/people/geraint.jones/).
 
