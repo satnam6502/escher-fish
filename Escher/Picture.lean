@@ -66,4 +66,15 @@ def above' (m n : Nat) (p q : Picture) : Picture :=
     let k : Rat := m / (m + n)
     p (a + (1 - k) * c) b (k * c) ++ q a b ((1 - k) * c)
 
+/-! Utility functions: `quartet` lays out four pictures in a square, `nonet` nine. -/
+
+def quartet (p q r s : Picture) : Picture := above (beside p q) (beside r s)
+
+def nonet (p q r
+           s t u
+           v w x : Picture) : Picture :=
+  above' 1 2 (beside' 1 2 p (beside q r))
+             (above (beside' 1 2 s (beside t u))
+                    (beside' 1 2 v (beside w x)))
+
 end Picture
