@@ -2,9 +2,18 @@ name = "escher"
 version = "0.1.0"
 defaultTargets = ["escher"]
 
+[[require]]
+name = "proofwidgets"
+git = "https://github.com/leanprover-community/ProofWidgets4"
+rev = "106ff4fafc74ef4ac99d81dbf3ab399118f497a5"
+
 [[lean_lib]]
 name = "Escher"
 
 [[lean_exe]]
 name = "escher"
 root = "Main"
+
+[[lean_lib]]
+name = "Examples"
+globs = ["Examples.+"]
