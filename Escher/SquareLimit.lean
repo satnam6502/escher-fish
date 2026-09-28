@@ -16,12 +16,10 @@ def t := over fish (over fish2 fish3)
 def u := over (over fish2 (rot fish2))
               (over (rot (rot fish2)) (rot (rot (rot fish2))))
 
-/-- `side[n] = quartet(side[n-1], side[n-1], rot(t), t)` -/
 def side : Nat → Picture
   | 0     => blank
   | n + 1 => quartet (side n) (side n) (rot t) t
 
-/-- `corner[n] = quartet(corner[n-1], side[n-1], rot(side[n-1]), u)` -/
 def corner : Nat → Picture
   | 0     => blank
   | n + 1 => quartet (corner n) (side n) (rot (side n)) u
