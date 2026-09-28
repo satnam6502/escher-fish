@@ -20,7 +20,7 @@ def squarelimit (n : Nat) :=
 
 Ruby, a relational hardware description language which provides combinators that simultaneously combine behavioural semantics and layout semantics, allows for the expression of sophisticated circuit layouts using just composable combinators without mentioning a single Cartesian co-ordinate. The page [A Sorter Example in Lava](https://raintown.org/lava/sorter/) gives an example of how a high speed sorter can be efficiently laid out on a Xilinx FPGA using a DSL that has layout combinators that also compose behaviour ([Lava](https://raintown.org/lava/)).
 
-Here is what the layout of a Batcher's bitonic sorter on an FPGA produced from a DSL with layout combinators looks like:
+Here is what the layout of a Batcher's bitonic sorter on a Xilinx Artix-7 XC7A200T FPGA produced from a DSL with layout combinators looks like:
 
 ![Butterfly sorter](butterfly-bsort.png)
 
