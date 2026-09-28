@@ -24,7 +24,21 @@ Here is what the layout of a Batcher's bitonic sorter on an FPGA produced from a
 
 ![Butterfly sorter](butterfly-bsort.png)
 
-Notice how the FFT-style butterfly wiring pattern is clearly evident. The ability to express spatial layout in a textual algebraic manner is not only great for humans, but it is also fantastic for AIs (LLMs), which can use layout combinators and their laws to help optimize circuit layouts to minimize area, delay, power, etc.
+Notice how the FFT-style butterfly wiring pattern is clearly evident. The ability to express spatial layout in a textual algebraic manner is not only great for humans, but it is also fantastic for AIs (LLMs), which can use layout combinators and their laws to help optimize circuit layouts to minimize area, delay, power, etc. The basic higher order layout combinator used to implement the sorter is a butterfly network:
+
+```lean
+/-
+BFLY is a butterfly pattern that can be used to implement Batcher's bitonic merger.
+A degree n=0 butterfly is the base case, applying just r on 2^(1+n) inputs ie. 2 inputs to 2 outputs.
+A degree n butterfly takes 2^(1+n) inputs and produces 2^(1+n) outputs.
+-/
+def BFLY (r : Rel (List.Vector α 2) (List.Vector α 2)) :
+    (n : Nat) → Rel (List.Vector α (2 ^ (n + 1))) (List.Vector α (2 ^ (n + 1)))
+  | 0 => r
+  | n + 1 =>
+    have h : 2 ^ (n + 2) = 2 * 2 ^ (n + 1) := by ring
+    h ▸ (ILV (BFLY r n) ⨾ EVENS r)
+```
 
 ## Running
 
