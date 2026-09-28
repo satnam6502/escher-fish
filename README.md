@@ -64,6 +64,10 @@ pictures draw the same curves in every locating box. For example:
 theorem rot_beside : rot (beside p q) ≈ above (rot q) (rot p)
 ```
 
+## More about Ruby and Lava
+* [Ruby page at the University of Oxford](https://www.cs.ox.ac.uk/people/geraint.jones/ruby/)
+* [Lava: hardware design in Haskell](https://dl.acm.org/doi/10.1145/289423.289440)
+
 ## Credits
 
 The fish's Bézier control points are Einar Høst's transcription of Henderson's
