@@ -72,10 +72,24 @@ def squarelimit (n : Nat) :=
 Coordinates are exact rationals (`Rat`) rather than `Float`, so the laws can be
 proved: floating-point addition is not even associative. Some laws hold only up to
 the order in which curves are drawn; these are stated with `≈`, meaning the two
-pictures draw the same curves in every locating box. For example:
+pictures draw the same curves in every locating box. The laws proved are:
 
 ```lean
+theorem rot_rot_rot_rot : rot (rot (rot (rot p))) = p
+
+theorem rot_above : rot (above p q) = beside (rot p) (rot q)
+
 theorem rot_beside : rot (beside p q) ≈ above (rot q) (rot p)
+
+theorem flip_beside : flip (beside p q) ≈ beside (flip q) (flip p)
+
+/-- Two `rot45`s halve a picture and move it out of its box, into the box above. -/
+theorem above_blank_rot45_rot45 :
+    above blank (rot45 (rot45 p)) = above (quartet blank blank (rot p) blank) blank
+
+theorem beside'_one_one : beside' 1 1 p q = beside p q
+
+theorem above'_one_one : above' 1 1 p q = above p q
 ```
 
 ## More about Ruby and Lava
