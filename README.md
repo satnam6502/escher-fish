@@ -48,6 +48,23 @@ lake build
 .lake/build/bin/escher out.svg    # or to a path of your choosing
 ```
 
+## Pictures in the Lean infoview
+
+Import `Escher.Widget` and place the cursor on a `#html` command to preview a picture:
+
+```lean
+import Escher.Fish
+import Escher.Widget
+
+open Picture
+
+#html fish
+#html beside fish (rot fish)
+```
+
+See [`Examples/Widget.lean`](Examples/Widget.lean) for more examples
+(`lake build Examples`).
+
 ## Reading the code alongside the paper
 
 | Paper | Lean |
