@@ -1,7 +1,10 @@
 name: Claude Code Review
 
+# `pull_request_target` so PRs from forks are reviewed too: under `pull_request`
+# they get no secrets or OIDC token. It runs this workflow as it is on the base
+# branch, with the base repository's secrets, so never check out the PR head.
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, ready_for_review, reopened]
 
 jobs:
@@ -11,7 +14,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -23,7 +25,10 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
-          track_progress: true
+          # Review PRs from anyone, not just users with write access. Requires the
+          # short-lived workflow token, scoped to the permissions above.
+          allowed_non_write_users: "*"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
           prompt: |
             REPO: ${{ github.repository }}
