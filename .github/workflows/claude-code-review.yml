@@ -6,7 +6,11 @@ on:
 
 jobs:
   review:
-    if: github.event.pull_request.draft == false
+    # Fork PRs get no secrets or OIDC token under `pull_request`, so the action
+    # cannot authenticate. Skip them rather than fail.
+    if: >-
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     permissions:
       contents: read
